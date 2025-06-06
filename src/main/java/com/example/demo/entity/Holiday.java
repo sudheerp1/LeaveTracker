@@ -7,9 +7,7 @@ import java.time.LocalDate;
 import com.example.demo.enums.HolidayType;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class Holiday {
 
     @Id

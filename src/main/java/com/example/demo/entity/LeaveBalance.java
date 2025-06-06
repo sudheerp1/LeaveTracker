@@ -2,17 +2,11 @@ package com.example.demo.entity;
 
 import com.example.demo.enums.LeaveType;
 import jakarta.persistence.*;
-import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "leave_balances")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class LeaveBalance {
 
     @Id
@@ -30,7 +24,7 @@ public class LeaveBalance {
     private Double totalLeaves;
 
     @Column(name = "used_leaves", nullable = false)
-    private Double bookedLeaves;  // Alias for usedLeaves
+    private Double bookedLeaves;
 
     @Column(name = "available_leaves", nullable = false)
     private Double availableLeaves;
@@ -52,27 +46,61 @@ public class LeaveBalance {
         this.updatedAt = LocalDateTime.now();
     }
 
+    // Getters and Setters
+
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getEmployeeId() {
         return employeeId;
     }
 
-    public String getLeaveType() {
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public LeaveType getLeaveType() {
         return leaveType;
     }
 
-    public int getAvailableLeaves() {
+    public void setLeaveType(LeaveType leaveType) {
+        this.leaveType = leaveType;
+    }
+
+    public Double getTotalLeaves() {
+        return totalLeaves;
+    }
+
+    public void setTotalLeaves(Double totalLeaves) {
+        this.totalLeaves = totalLeaves;
+    }
+
+    public Double getBookedLeaves() {
+        return bookedLeaves;
+    }
+
+    public void setBookedLeaves(Double bookedLeaves) {
+        this.bookedLeaves = bookedLeaves;
+    }
+
+    public Double getAvailableLeaves() {
         return availableLeaves;
     }
 
-    public int getBookedLeaves() {
-        return bookedLeaves;
+    public void setAvailableLeaves(Double availableLeaves) {
+        this.availableLeaves = availableLeaves;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 }
-
-
-
-

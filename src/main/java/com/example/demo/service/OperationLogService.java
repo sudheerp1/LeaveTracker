@@ -15,6 +15,9 @@ import java.util.stream.Collectors;
 public class OperationLogService {
 
     private final OperationLogRepository repository;
+    public OperationLogService(OperationLogRepository repository) {
+        this.repository = repository;
+    }
 
     public OperationLogDTO logOperation(OperationLogDTO dto) {
         OperationLog log = new OperationLog();

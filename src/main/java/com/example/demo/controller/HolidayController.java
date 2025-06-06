@@ -18,6 +18,9 @@ import java.util.List;
 public class HolidayController {
 
     private final HolidayService holidayService;
+    public HolidayController(HolidayService holidayService) {
+        this.holidayService = holidayService;
+    }
 
     @PostMapping
     public HolidayDTO addHoliday(@RequestBody HolidayDTO dto) {

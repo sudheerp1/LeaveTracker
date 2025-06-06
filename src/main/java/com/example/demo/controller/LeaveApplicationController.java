@@ -13,6 +13,11 @@ import java.util.List;
 public class LeaveApplicationController {
 
     private final LeaveApplicationService leaveApplicationService;
+   
+    public LeaveApplicationController(LeaveApplicationService leaveApplicationService) {
+        this.leaveApplicationService = leaveApplicationService;
+    }
+
 
     @PostMapping
     public LeaveApplicationDTO applyLeave(@RequestBody LeaveApplicationDTO dto) {

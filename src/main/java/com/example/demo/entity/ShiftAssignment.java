@@ -11,10 +11,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "shift_assignments")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+
 public class ShiftAssignment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

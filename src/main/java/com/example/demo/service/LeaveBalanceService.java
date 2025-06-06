@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class LeaveBalanceService {
 
-    private final LeaveBalanceRepository leaveBalanceRepository;
+    private LeaveBalanceRepository leaveBalanceRepository;
 
     public List<LeaveBalanceDto> getBalancesByUser(Long userId) {
         return leaveBalanceRepository.findByEmployeeId(userId)

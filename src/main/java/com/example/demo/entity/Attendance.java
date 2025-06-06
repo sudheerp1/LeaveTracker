@@ -13,10 +13,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "attendances")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+
 public class Attendance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,4 +29,39 @@ public class Attendance {
 
     @Enumerated(EnumType.STRING)
     private DayType dayType;
+    
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+   
+
+    public LocalTime getInTime() { return inTime; }
+    public void setInTime(LocalTime inTime) { this.inTime = inTime; }
+
+    public LocalTime getOutTime() { return outTime; }
+    public void setOutTime(LocalTime outTime) { this.outTime = outTime; }
+
+    public boolean isPresent() { return present; }
+    public void setPresent(boolean present) { this.present = present; }
+   
+   
+    public DayType getDayType() {
+        return dayType;
+    }
+
+    public void setDayType(DayType dayType) {
+        this.dayType = dayType;
+    }
+
+
+    
 }
+   
+
+    
+

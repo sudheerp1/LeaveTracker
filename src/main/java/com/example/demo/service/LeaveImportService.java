@@ -4,6 +4,8 @@ import com.example.demo.Dto.BulkLeaveUploadResponseDTO;
 import com.example.demo.entity.LeaveImportLog;
 import com.example.demo.repository.LeaveImportLogRepository;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,9 +16,11 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class LeaveImportService {
-
+	
     private final LeaveImportLogRepository leaveImportLogRepository; // ✅ no manual = null, let Spring inject
-
+    public LeaveImportService(LeaveImportLogRepository leaveImportLogRepository) {
+        this.leaveImportLogRepository = leaveImportLogRepository;
+    }
     public BulkLeaveUploadResponseDTO importLeaveData(MultipartFile file, String importedBy) {
         int total = 0, success = 0, failed = 0;
         List<String> errorMessages = new ArrayList<>();

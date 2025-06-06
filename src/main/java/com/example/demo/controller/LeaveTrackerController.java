@@ -15,7 +15,9 @@ import java.util.List;
 public class LeaveTrackerController {
 
     private final LeaveApplicationService leaveApplicationService;
-
+    public LeaveTrackerController(LeaveApplicationService leaveApplicationService) {
+        this.leaveApplicationService = leaveApplicationService;
+    }
     @PostMapping("/filter")
     public List<LeaveApplicationDTO> filterLeaves(@RequestBody LeaveFilterDTO filterDTO) {
         return leaveApplicationService.filterLeaves(filterDTO);

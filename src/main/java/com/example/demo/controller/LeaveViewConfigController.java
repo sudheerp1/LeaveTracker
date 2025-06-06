@@ -4,18 +4,23 @@ import com.example.demo.entity.LeaveRequest;
 import com.example.demo.entity.LeaveViewConfig;
 import com.example.demo.repository.LeaveRequestRepository;
 import com.example.demo.service.LeaveViewConfigService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/leave-views")
-@RequiredArgsConstructor
 public class LeaveViewConfigController {
 
     private final LeaveViewConfigService service;
-    private final LeaveRequestRepository LeaveRequestRepository;
+    private final LeaveRequestRepository leaveRequestRepository;
+
+    // Explicit constructor injection
+    public LeaveViewConfigController(LeaveViewConfigService service, LeaveRequestRepository leaveRequestRepository) {
+        this.service = service;
+        this.leaveRequestRepository = leaveRequestRepository;
+    }
+
     @PostMapping
     public LeaveViewConfig createView(@RequestBody LeaveViewConfig config) {
         return service.saveConfig(config);
@@ -35,8 +40,10 @@ public class LeaveViewConfigController {
     public void deleteView(@PathVariable Long id) {
         service.deleteConfig(id);
     }
-    public LeaveRequest saveLeaveRequest(LeaveRequest request) {
-        return LeaveRequestRepository.save(request);
-    }
 
+    // Optional: If you intend to expose saving a LeaveRequest
+    @PostMapping("/leave-request")
+    public LeaveRequest saveLeaveRequest(@RequestBody LeaveRequest request) {
+        return leaveRequestRepository.save(request);
+    }
 }

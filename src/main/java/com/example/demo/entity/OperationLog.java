@@ -7,10 +7,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "operation_log")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+
 public class OperationLog {
 
     @Id

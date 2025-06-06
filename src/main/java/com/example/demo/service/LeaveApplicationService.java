@@ -14,11 +14,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
+
 public class LeaveApplicationService {
 
     private final LeaveApplicationRepository leaveApplicationRepository;
     private final EmployeeRepository employeeRepository;
+    public LeaveApplicationService(LeaveApplicationRepository leaveApplicationRepository,
+            EmployeeRepository employeeRepository) {
+this.leaveApplicationRepository = leaveApplicationRepository;
+this.employeeRepository = employeeRepository;
+}
+
 
     public LeaveApplicationDTO applyLeave(LeaveApplicationDTO dto) {
         Employee employee = employeeRepository.findById(dto.getEmployeeId()).orElseThrow();

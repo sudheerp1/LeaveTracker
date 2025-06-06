@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.Dto.HolidayDTO;
+
 import com.example.demo.entity.Holiday;
 import com.example.demo.enums.HolidayType;
 import com.example.demo.repository.HolidayRepository;
@@ -17,6 +18,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +28,11 @@ import java.util.stream.Collectors;
 public class HolidayService {
 
     private final HolidayRepository holidayRepository;
+    public HolidayService(HolidayRepository holidayRepository) {
+        this.holidayRepository = holidayRepository;
+    }
+    private static final Logger log = LoggerFactory.getLogger(HolidayService.class);
+
 
     public HolidayDTO addHoliday(HolidayDTO dto) {
         Holiday holiday = new Holiday();

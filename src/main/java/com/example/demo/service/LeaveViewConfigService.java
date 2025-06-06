@@ -3,7 +3,6 @@ package com.example.demo.service;
 import com.example.demo.Dto.LeaveViewConfigDto;
 import com.example.demo.entity.LeaveViewConfig;
 import com.example.demo.repository.LeaveViewConfigRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -11,10 +10,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class LeaveViewConfigService {
 
     private final LeaveViewConfigRepository repository;
+
+    public LeaveViewConfigService(LeaveViewConfigRepository repository) {
+        this.repository = repository;
+    }
 
     // --- Basic Entity Operations ---
 
@@ -46,17 +48,18 @@ public class LeaveViewConfigService {
     // --- DTO-based View Operations ---
 
     public LeaveViewConfigDto createView(LeaveViewConfigDto dto, String createdBy) {
-        LeaveViewConfig config = LeaveViewConfig.builder()
-                .viewName(dto.getViewName())
-                .selectedColumns(dto.getSelectedColumns())
-                .viewPermission(dto.getViewPermission()) // ✅ Updated
-                .sharedWithUsers(dto.getSharedWithUsers())
-                .sharedWithRoles(dto.getSharedWithRoles())
-                .sharedWithDepartments(dto.getSharedWithDepartments())
-                .createdAt(LocalDateTime.now())
-                .createdBy(createdBy)
-                .build();
-        return toDto(repository.save(config));
+        LeaveViewConfig config = new LeaveViewConfig();
+        config.setViewName(dto.getViewName());
+        config.setSelectedColumns(dto.getSelectedColumns());
+        config.setViewPermission(dto.getViewPermission());
+        config.setSharedWithUsers(dto.getSharedWithUsers());
+        config.setSharedWithRoles(dto.getSharedWithRoles());
+        config.setSharedWithDepartments(dto.getSharedWithDepartments());
+        config.setCreatedAt(LocalDateTime.now());
+        config.setCreatedBy(createdBy);
+
+        LeaveViewConfig saved = repository.save(config);
+        return toDto(saved);
     }
 
     public List<LeaveViewConfigDto> getUserViews(String username) {
@@ -71,14 +74,15 @@ public class LeaveViewConfigService {
 
         config.setViewName(dto.getViewName());
         config.setSelectedColumns(dto.getSelectedColumns());
-        config.setViewPermission(dto.getViewPermission()); // ✅ Updated
+        config.setViewPermission(dto.getViewPermission());
         config.setSharedWithUsers(dto.getSharedWithUsers());
         config.setSharedWithRoles(dto.getSharedWithRoles());
         config.setSharedWithDepartments(dto.getSharedWithDepartments());
         config.setModifiedAt(LocalDateTime.now());
         config.setModifiedBy(dto.getModifiedBy());
 
-        return toDto(repository.save(config));
+        LeaveViewConfig updated = repository.save(config);
+        return toDto(updated);
     }
 
     public void deleteView(Long id) {
@@ -87,16 +91,15 @@ public class LeaveViewConfigService {
 
     // --- Mapper Method ---
     private LeaveViewConfigDto toDto(LeaveViewConfig entity) {
-        return LeaveViewConfigDto.builder()
-                .id(entity.getId())
-                .viewName(entity.getViewName())
-                .selectedColumns(entity.getSelectedColumns())
-                .viewPermission(entity.getViewPermission()) // ✅ Updated
-                .sharedWithUsers(entity.getSharedWithUsers())
-                .sharedWithRoles(entity.getSharedWithRoles())
-                .sharedWithDepartments(entity.getSharedWithDepartments())
-                .build();
+        LeaveViewConfigDto dto = new LeaveViewConfigDto();
+        dto.setId(entity.getId());
+        dto.setViewName(entity.getViewName());
+        dto.setSelectedColumns(entity.getSelectedColumns());
+        dto.setViewPermission(entity.getViewPermission());
+        dto.setSharedWithUsers(entity.getSharedWithUsers());
+        dto.setSharedWithRoles(entity.getSharedWithRoles());
+        dto.setSharedWithDepartments(entity.getSharedWithDepartments());
+        // You can add more fields if your entity has them and you want to expose them in DTO
+        return dto;
     }
 }
-
-

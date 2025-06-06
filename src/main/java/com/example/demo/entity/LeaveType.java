@@ -7,9 +7,7 @@ import lombok.*;
 @Table(name = "leave_types")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+
 public class LeaveType {
 
     @Id
