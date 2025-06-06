@@ -9,4 +9,8 @@ public class LeaveSummaryDto {
     private Map<LeaveType, Integer> available;
     private Map<LeaveType, Integer> booked;
     private Integer absentDays;
+    private int bookedLeaves;
+    private int availableLeaves;
+    public void setBookedLeaves(int bookedLeaves) { this.bookedLeaves = bookedLeaves; }
+    public void setAvailableLeaves(int availableLeaves) { this.availableLeaves = availableLeaves; }
 }

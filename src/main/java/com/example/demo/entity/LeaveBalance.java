@@ -51,7 +51,28 @@ public class LeaveBalance {
     protected void onUpdate() {
         this.updatedAt = LocalDateTime.now();
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Long getEmployeeId() {
+        return employeeId;
+    }
+
+    public String getLeaveType() {
+        return leaveType;
+    }
+
+    public int getAvailableLeaves() {
+        return availableLeaves;
+    }
+
+    public int getBookedLeaves() {
+        return bookedLeaves;
+    }
 }
+
 
 
 
